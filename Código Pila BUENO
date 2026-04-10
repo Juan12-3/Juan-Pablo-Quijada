@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+
+struct Nodo {
+    int dato;
+    Nodo *siguiente; // esto es lo que conecta al nodo de abajo
+};
+
+int main() {
+    Nodo *pila = NULL; // Al principio, la pila está vacía
+    int valor;
+    char rpt;
+
+    // AGREGAR ELEMENTOS
+    do {
+        cout << "Escribe un numero: ";
+        cin >> valor;
+
+        // Crear el nuevo nodo en memoria
+        Nodo *nuevoNodo = new Nodo();
+        nuevoNodo->dato = valor;
+        
+        // CONEXIÓN: El nuevo nodo agarra al que ya estaba arriba
+        nuevoNodo->siguiente = pila;
+        
+        // El "tope" de la pila ahora es el nuevo nodo
+        pila = nuevoNodo;
+
+        cout << "Otro? (s/n): "; cin >> rpt;
+    } while(rpt == 's');
+
+    // 2. MOSTRAR Y LIMPIAR
+    cout << "\nSacando de la pila: ";
+    while(pila != NULL) {
+        Nodo *aux = pila;     // Apuntamos al de arriba para no perderlo
+        cout << aux->dato << " ";
+        
+        pila = aux->siguiente; // La pila ahora empieza en el de abajo
+        delete aux;            // Borramos el que acabamos de sacar
+    }
+
+    return 0;
+}
