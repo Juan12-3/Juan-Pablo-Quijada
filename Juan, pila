@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int pila[100]; // Espacio para 100 números
+    int tope = -1; // Nos dice cuál es el último elemento (-1 significa vacía)
+    int dato;
+    char respuesta;
+
+    // 1. Llenar la pila
+    do {
+        cout << "Digite un numero: ";
+        cin >> dato;
+
+        tope++;             // Subimos el tope
+        pila[tope] = dato;  // Guardamos el número
+
+        cout << "Desea agregar otro? (s/n): ";
+        cin >> respuesta;
+    } while (respuesta == 's' || respuesta == 'S');
+
+    // 2. Mostrar y vaciar la pila
+    cout << "\nMostrando elementos (en orden de salida): " << endl;
+    
+    while (tope >= 0) {
+        cout << "[" << pila[tope] << "]" << endl;
+        tope--; // Bajamos el tope (simula sacar el elemento)
+    }
+
+    return 0;
+}
